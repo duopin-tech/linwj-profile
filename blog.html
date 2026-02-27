@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AK - 技术博客</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #0f766e;
+      --secondary-color: #0ea5e9;
+      --accent-color: #22c55e;
+      --purple-color: #0369a1;
+      --bg-light: #f0f9f8;
+      --bg-gradient: linear-gradient(135deg, #e0f7f4 0%, #ccfbf1 40%, #e0f2fe 100%);
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(45, 212, 191, 0.35) 0%, transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.3) 0%, transparent 55%),
+        radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.22) 0%, transparent 55%);
+      animation: bgShift 10s ease-in-out infinite;
+    }
+
+    @keyframes bgShift {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Floating Shapes */
+    .shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.6;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at 30% 20%, #a5f3fc, #22d3ee);
+      border-radius: 50%;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle at 70% 30%, #bbf7d0, #22c55e);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      top: 60%;
+      left: 85%;
+      animation-delay: 2s;
+    }
+
+    .shape-3 {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle at 40% 30%, #bae6fd, #38bdf8);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      top: 80%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    .shape-4 {
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle at 40% 30%, #bfdbfe, #60a5fa);
+      border-radius: 50%;
+      top: 30%;
+      left: 75%;
+      animation-delay: 1s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+      }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Header Section */
+    .header {
+      background: var(--card-bg);
+      border-radius: 30px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--purple-color));
+    }
+
+    .header-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-title h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--purple-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .header-title p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .back-button {
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.25);
+    }
+
+    /* Blog Navigation */
+    .blog-nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .nav-button {
+      padding: 0.7rem 1.5rem;
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 20px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-button:hover,
+    .nav-button.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+    }
+
+    /* Blog Section Styles */
+    .blog-section {
+      background: var(--card-bg);
+      border-radius: 25px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .blog-section:hover {
+      transform: translateY(-5px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .section-icon {
+      font-size: 2.5rem;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Blog Content */
+    .blog-content {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .blog-item {
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 20px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .blog-item:hover {
+      transform: translateX(5px);
+      border-color: rgba(34, 197, 187, 0.9);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    }
+
+    .blog-item-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .blog-item-project {
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .blog-item-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .blog-item-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 0.3rem 0.8rem;
+      background: linear-gradient(135deg, rgba(209, 250, 229, 0.9), rgba(186, 230, 253, 0.9));
+      border-radius: 15px;
+      color: var(--primary-color);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Summary Box */
+    .summary-box {
+      background: linear-gradient(135deg, rgba(239, 246, 255, 0.98), rgba(224, 242, 254, 0.98));
+      border-left: 4px solid var(--primary-color);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 15px 15px 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-box h4 {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .summary-box p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Tech Stack */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 0.8rem;
+    }
+
+    .tech-item {
+      padding: 0.4rem 1rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 20px;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 25px;
+      margin-top: 2rem;
+    }
+
+    .footer p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .header-title h1 {
+        font-size: 2rem;
+      }
+
+      .blog-nav {
+        justify-content: center;
+      }
+
+      .section-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .section-icon {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-animation"></div>
+  <div class="shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header Section -->
+    <header class="header">
+      <div class="header-title">
+        <h1>技术博客</h1>
+        <p>项目经历与学习总结</p>
+      </div>
+      <a href="index.html" class="back-button">← 返回简历</a>
+    </header>
+
+    <!-- Blog Navigation -->
+    <nav class="blog-nav">
+      <a href="#android" class="nav-button">🤖 Android</a>
+      <a href="#vuejs" class="nav-button">💚 Vue.js</a>
+      <a href="#ios" class="nav-button">🍎 iOS</a>
+      <a href="#miniprogram" class="nav-button">📱 小程序</a>
+      <a href="#uniapp" class="nav-button">🚀 UniApp</a>
+      <a href="#pos" class="nav-button">💳 POS机</a>
+      <a href="#3dmap" class="nav-button">🗺️ 三维地图</a>
+      <a href="#rpa" class="nav-button">🤖 RPA</a>
+      <a href="#ai-workflow" class="nav-button">🧠 AI工作流</a>
+    </nav>
+
+    <!-- Android Section -->
+    <section id="android" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">🤖</div>
+        <div>
+          <h2 class="section-title">Android开发</h2>
+          <p class="section-subtitle">从Framework到应用层的技术积累</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>
+          在Android领域深耕多年，从Framework层系统UI开发到应用层项目开发，积累了深厚的Android系统知识。熟悉Android四大组件、Fragment、View体系、多线程、网络编程等核心技术，能够独立完成复杂的Android项目开发与优化。
+        </p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">🏢 联想移动系统应用开发</h3>
+          <div class="blog-item-project">项目：中国移动合作项目 | 2012-2018</div>
+          <p class="blog-item-desc">负责Android
+            Framework系统UI开发与维护，包括系统应用Contacts、InCallUI等的开发与迭代。深入理解Android系统架构，优化产品性能与用户体验，参与多个运营商定制项目。</p>
+          <div class="blog-item-tags">
+            <span class="tag">Android Framework</span>
+            <span class="tag">System UI</span>
+            <span class="tag">Contacts</span>
+            <span class="tag">InCallUI</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">🏙️ 厦门市民卡APP Android端</h3>
+          <div class="blog-item-project">项目：i厦门核心应用 | 2018-2021</div>
+          <p class="blog-item-desc">负责Android端核心模块开发，包括首页、乘车码、信用生活等模块。实现扫码支付、电子卡包、生活服务等功能，保障多端适配与功能稳定，服务百万级用户。</p>
+          <div class="blog-item-tags">
+            <span class="tag">扫码支付</span>
+            <span class="tag">电子卡包</span>
+            <span class="tag">多端适配</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">💳 云MISPOS支付项目</h3>
+          <div class="blog-item-project">项目：柒牌定制移动POS收银系统 | 2021</div>
+          <p class="blog-item-desc">参与技术选型，采用Kotlin+Jetpack技术栈。运用Kotlin协程技术降低异步编程难度，负责核心收银功能开发，项目成功在柒牌60多家门店试用上线。</p>
+          <div class="tech-stack">
+            <span class="tech-item">Kotlin</span>
+            <span class="tech-item">Jetpack</span>
+            <span class="tech-item">协程</span>
+            <span class="tech-item">MVVM</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vue.js Section -->
+    <section id="vuejs" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">💚</div>
+        <div>
+          <h2 class="section-title">Vue.js开发</h2>
+          <p class="section-subtitle">现代化前端框架的深入实践</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>精通Vue2、Vue3及其完整生态体系（Vue Router、Vuex/Pinia、Axios、Element
+          UI等）。熟悉组件化开发、状态管理、路由管理、响应式原理等核心概念，能够高效构建大型单页应用，具备良好的代码组织和性能优化能力。</p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">💻 银商电子办公系统</h3>
+          <div class="blog-item-project">项目：银联商务内部办公平台 | 2018-2021</div>
+          <p class="blog-item-desc">主导前端模块开发，熟练运用Element
+            UI、ECharts等组件库，解决多屏幕适配难点，优化系统性能。包含项目管理、大数据报表、OA审批等多个子系统，支撑公司日常办公需求。</p>
+          <div class="tech-stack">
+            <span class="tech-item">Vue2</span>
+            <span class="tech-item">Element UI</span>
+            <span class="tech-item">ECharts</span>
+            <span class="tech-item">Vuex</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">🏪 IOI集团会员积分系统</h3>
+          <div class="blog-item-project">项目：多业态会员积分管理平台</div>
+          <p class="blog-item-desc">负责前端模块开发，实现多业态会员积分互通、积分管理等功能。适配复杂业务需求，保障积分系统稳定运行与数据准确，提升会员粘性和用户体验。</p>
+          <div class="blog-item-tags">
+            <span class="tag">积分管理</span>
+            <span class="tag">多业态</span>
+            <span class="tag">Vue3</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">📊 武汉保供平台大屏</h3>
+          <div class="blog-item-project">项目：应急战备物资供应智能调度系统</div>
+          <p class="blog-item-desc">负责大屏看板前端开发，运用ECharts实现数据可视化，保障物资调度信息实时展示。支持多维度数据展示、实时更新、交互分析，为应急调度提供决策支持。</p>
+          <div class="tech-stack">
+            <span class="tech-item">ECharts</span>
+            <span class="tech-item">数据可视化</span>
+            <span class="tech-item">实时更新</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- iOS Section -->
+    <section id="ios" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">🍎</div>
+        <div>
+          <h2 class="section-title">iOS开发</h2>
+          <p class="section-subtitle">Apple生态的移动应用开发</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>熟悉iOS开发基础，掌握Swift/Objective-C编程语言，了解UIKit框架、Cocoa
+          Touch框架等。具备跨平台开发思维，通过Flutter等框架实现iOS与Android的代码复用，能够完成iOS应用的基础功能开发。</p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">📱 跨平台应用开发实践</h3>
+          <div class="blog-item-project">技术探索与学习</div>
+          <p class="blog-item-desc">
+            通过Flutter跨平台开发框架，实现一套代码同时支持Android和iOS平台。深入研究Flutter的Widget体系、状态管理、平台通道等特性，提升跨平台开发效率，减少维护成本。</p>
+          <div class="tech-stack">
+            <span class="tech-item">Flutter</span>
+            <span class="tech-item">Dart</span>
+            <span class="tech-item">跨平台</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mini Program Section -->
+    <section id="miniprogram" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">📱</div>
+        <div>
+          <h2 class="section-title">小程序开发</h2>
+          <p class="section-subtitle">轻量级应用的快速开发与部署</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>熟练掌握微信小程序开发，熟悉小程序框架、组件、API、云开发等。能够快速构建功能完善的小程序应用，实现扫码、支付、分享、定位等核心功能，了解小程序的运营推广和用户体验优化。</p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">🏠 智慧社区小程序</h3>
+          <div class="blog-item-project">项目：疫情防控专项小程序 | 2020</div>
+          <p class="blog-item-desc">搭建小程序项目框架，开发首页、出入登记模块。实现用户身份验证、扫码登记、数据统计等功能，保障项目快速上线，助力疫情防控工作。</p>
+          <div class="tech-stack">
+            <span class="tech-item">微信小程序</span>
+            <span class="tech-item">扫码登记</span>
+            <span class="tech-item">用户认证</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">🏙️ 厦门市民卡小程序</h3>
+          <div class="blog-item-project">项目：i厦门核心服务载体 | 2018-2021</div>
+          <p class="blog-item-desc">参与小程序端开发，实现与APP、H5端的功能对齐。开发乘车码、生活服务、政务服务等功能模块，保障多端体验一致性，服务厦门市民日常生活。</p>
+          <div class="blog-item-tags">
+            <span class="tag">乘车码</span>
+            <span class="tag">生活服务</span>
+            <span class="tag">政务服务</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UniApp Section -->
+    <section id="uniapp" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">🚀</div>
+        <div>
+          <h2 class="section-title">UniApp开发</h2>
+          <p class="section-subtitle">一套代码，多端部署的跨平台解决方案</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>精通UniApp框架，能够使用Vue语法开发小程序、H5、Android App等多端应用。熟悉UniApp的条件编译、插件机制、原生模块扩展等特性，通过一套代码实现多端发布，大大提升开发效率和降低维护成本。</p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">🌐 多端应用开发实践</h3>
+          <div class="blog-item-project">跨平台项目开发</div>
+          <p class="blog-item-desc">利用UniApp实现一套代码同时编译为微信小程序、H5页面、Android APP等多个平台。通过条件编译处理平台差异，使用插件市场丰富功能，实现快速开发和部署。
+          </p>
+          <div class="tech-stack">
+            <span class="tech-item">UniApp</span>
+            <span class="tech-item">条件编译</span>
+            <span class="tech-item">插件开发</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">🔧 原生模块扩展</h3>
+          <div class="blog-item-project">技术能力拓展</div>
+          <p class="blog-item-desc">深入研究UniApp的原生模块扩展机制，能够在Android和iOS端开发原生插件，扩展UniApp的功能边界。实现扫码支付、蓝牙通信、硬件调用等原生功能。</p>
+          <div class="blog-item-tags">
+            <span class="tag">原生插件</span>
+            <span class="tag">硬件调用</span>
+            <span class="tag">蓝牙通信</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POS Section -->
+    <section id="pos" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">💳</div>
+        <div>
+          <h2 class="section-title">POS机开发</h2>
+          <p class="section-subtitle">金融支付终端的专业开发</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>熟悉POS机开发流程，掌握支付相关协议（银联、支付宝、微信支付等）、硬件接口（扫码枪、打印机、读卡器）、安全认证等专业知识。能够独立完成POS机应用开发和SDK开发，保障支付安全和交易稳定。</p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">💳 云MISPOS支付项目</h3>
+          <div class="blog-item-project">项目：柒牌定制移动POS收银系统 | 2021</div>
+          <p class="blog-item-desc">参与技术选型，运用Kotlin+Jetpack技术栈。负责支付功能开发，对接银联支付接口，实现扫码支付、NFC支付、会员识别等功能，项目在柒牌60多家门店成功试用。
+          </p>
+          <div class="tech-stack">
+            <span class="tech-item">银联支付</span>
+            <span class="tech-item">扫码支付</span>
+            <span class="tech-item">NFC</span>
+            <span class="tech-item">Kotlin</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">🔧 SDK开发与优化</h3>
+          <div class="blog-item-project">技术积累</div>
+          <p class="blog-item-desc">主导POS机相关应用开发、SDK开发。封装支付接口、硬件接口，提供统一的API供业务层调用，简化开发流程，提升代码复用率。优化支付流程，提升交易成功率和用户体验。
+          </p>
+          <div class="blog-item-tags">
+            <span class="tag">SDK开发</span>
+            <span class="tag">接口封装</span>
+            <span class="tag">性能优化</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D Map Section -->
+    <section id="3dmap" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">🗺️</div>
+        <div>
+          <h2 class="section-title">三维地图开发</h2>
+          <p class="section-subtitle">数字孪生与可视化技术应用</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>掌握CesiumJS、WebGL等三维可视化技术，能够构建逼真的三维地图场景。熟悉三维模型加载、地形渲染、空间分析、可视化效果等技术，具备数字孪生开发经验，能够将现实场景数字化呈现。</p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">🧭 吉位罗盘项目</h3>
+          <div class="blog-item-project">项目：移动端三维地图与传统风水堪舆结合</div>
+          <p class="blog-item-desc">负责移动端前端开发，运用CesiumJS、WebGL技术实现三维地图渲染。完成地形加载、建筑模型展示、空间分析等核心功能，将传统堪舆文化与现代三维技术相结合。</p>
+          <div class="tech-stack">
+            <span class="tech-item">CesiumJS</span>
+            <span class="tech-item">WebGL</span>
+            <span class="tech-item">三维渲染</span>
+            <span class="tech-item">空间分析</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">🏗️ 数字孪生探索</h3>
+          <div class="blog-item-project">技术研究</div>
+          <p class="blog-item-desc">深入研究数字孪生技术，探索其在智慧城市、工业互联网等领域的应用。研究三维模型格式（GLTF、3D Tiles）、实时渲染、传感器数据集成等技术，为未来项目积累技术储备。
+          </p>
+          <div class="blog-item-tags">
+            <span class="tag">数字孪生</span>
+            <span class="tag">智慧城市</span>
+            <span class="tag">实时渲染</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RPA Section -->
+    <section id="rpa" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">🤖</div>
+        <div>
+          <h2 class="section-title">RPA开发</h2>
+          <p class="section-subtitle">机器人流程自动化与效率提升</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>精通RPA机器人流程自动化开发，熟悉UiPath、Power Automate、影刀等主流RPA平台。能够将重复性、标准化的业务流程自动化，包括数据录入、报表生成、邮件处理、系统操作等，大幅提升办公效率，降低人工成本。
+        </p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">🧾 RPA发票处理项目</h3>
+          <div class="blog-item-project">项目：办公自动化流程优化</div>
+          <p class="blog-item-desc">负责整个自动化流程的搭建与优化，实现发票处理全流程自动化。包括OCR扫描识别、Excel数据录入、奖金计算、邮件确认等环节，减少人工成本，提升处理效率和准确性。</p>
+          <div class="tech-stack">
+            <span class="tech-item">OCR识别</span>
+            <span class="tech-item">Excel自动化</span>
+            <span class="tech-item">邮件处理</span>
+            <span class="tech-item">流程自动化</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">⚙️ 自动化流程设计与优化</h3>
+          <div class="blog-item-project">技术能力</div>
+          <p class="blog-item-desc">具备业务流程分析和自动化方案设计能力，能够识别可自动化的业务环节，设计最优的RPA解决方案。熟悉异常处理、日志记录、人机交互等RPA最佳实践，确保自动化流程稳定可靠。
+          </p>
+          <div class="blog-item-tags">
+            <span class="tag">流程设计</span>
+            <span class="tag">异常处理</span>
+            <span class="tag">最佳实践</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Workflow Section -->
+    <section id="ai-workflow" class="blog-section">
+      <div class="section-header">
+        <div class="section-icon">🧠</div>
+        <div>
+          <h2 class="section-title">AI工作流</h2>
+          <p class="section-subtitle">人工智能技术与研发流程的结合</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>💡 学习总结</h4>
+        <p>关注AI技术在软件开发领域的应用，探索AI辅助开发、自动化测试、智能运维等方向。了解大语言模型、代码生成、需求分析等AI技术，致力于将AI技术融入研发流程，提升开发效率和产品质量。</p>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-item">
+          <h3 class="blog-item-title">🔬 银商需求研发一体化平台</h3>
+          <div class="blog-item-project">项目：AI驱动的研发自动化平台</div>
+          <p class="blog-item-desc">
+            研究型项目，通过AI技术实现从需求提出到应用落地部署的全流程自动化。负责前端模块开发，配合AI技术落地，参与技术方案优化，推动项目研发进度，探索AI在研发流程中的应用场景。</p>
+          <div class="tech-stack">
+            <span class="tech-item">AI辅助开发</span>
+            <span class="tech-item">自动化部署</span>
+            <span class="tech-item">需求分析</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <h3 class="blog-item-title">🚀 AI技术探索与应用</h3>
+          <div class="blog-item-project">技术前瞻</div>
+          <p class="blog-item-desc">
+            持续关注AI技术发展趋势，研究大语言模型、代码生成工具、智能运维等前沿技术。探索AI在代码审查、自动化测试、性能优化等场景的应用，为团队引入AI辅助开发工具，提升整体研发效率。</p>
+          <div class="blog-item-tags">
+            <span class="tag">大语言模型</span>
+            <span class="tag">代码生成</span>
+            <span class="tag">智能运维</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>持续学习 · 技术分享 · 共同成长</p>
+      <p>📧 123456789@qq.com | 📱 15959274058</p>
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Active navigation highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navButtons = document.querySelectorAll('.nav-button');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navButtons.forEach(button => {
+        button.classList.remove('active');
+        if (button.getAttribute('href') === `#${current}`) {
+          button.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
