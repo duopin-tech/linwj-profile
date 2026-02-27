@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AK - 前端开发工程师简历</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #0f766e;
+      --secondary-color: #0ea5e9;
+      --accent-color: #22c55e;
+      --purple-color: #0369a1;
+      --bg-light: #f0f9f8;
+      --bg-gradient: linear-gradient(135deg, #e0f7f4 0%, #ccfbf1 40%, #e0f2fe 100%);
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(45, 212, 191, 0.35) 0%, transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.3) 0%, transparent 55%),
+        radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.22) 0%, transparent 55%);
+      animation: bgShift 10s ease-in-out infinite;
+    }
+
+    @keyframes bgShift {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Floating Shapes */
+    .shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.6;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at 30% 20%, #a5f3fc, #22d3ee);
+      border-radius: 50%;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle at 70% 30%, #bbf7d0, #22c55e);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      top: 60%;
+      left: 85%;
+      animation-delay: 2s;
+    }
+
+    .shape-3 {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle at 40% 30%, #bae6fd, #38bdf8);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      top: 80%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    .shape-4 {
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle at 40% 30%, #bfdbfe, #60a5fa);
+      border-radius: 50%;
+      top: 30%;
+      left: 75%;
+      animation-delay: 1s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+      }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Header Section */
+    .header {
+      background: var(--card-bg);
+      border-radius: 30px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--purple-color));
+    }
+
+    .profile-box {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid rgba(34, 197, 187, 0.9);
+      background: radial-gradient(circle at 20% 0%, #a5f3fc 0, #22c55e 45%, #0f766e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+      box-shadow:
+        0 16px 40px rgba(15, 23, 42, 0.25),
+        0 0 60px rgba(34, 197, 187, 0.45);
+      margin: 0 auto;
+      position: relative;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .header-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--purple-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .title {
+      font-size: 1.4rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, rgba(240, 249, 255, 0.9), rgba(224, 242, 254, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 15px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+      border-color: rgba(34, 197, 187, 0.9);
+    }
+
+    .contact-item .icon {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+    }
+
+    .contact-item .text {
+      color: var(--text-primary);
+    }
+
+    /* Section Styles */
+    .section {
+      background: var(--card-bg);
+      border-radius: 25px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid rgba(148, 163, 184, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title .icon {
+      font-size: 1.4rem;
+    }
+
+    /* Grid Layout for Content */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .skill-category {
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.95), rgba(224, 242, 254, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 20px;
+      padding: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .skill-category:hover {
+      transform: scale(1.03);
+      border-color: rgba(34, 197, 187, 0.9);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+    }
+
+    .skill-category h4 {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-category ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .skill-category li {
+      padding: 0.3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .skill-category li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+
+    /* Advantages */
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .advantage-item {
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 20px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .advantage-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.18);
+      border-color: rgba(34, 197, 187, 0.9);
+    }
+
+    .advantage-item .icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .advantage-item h4 {
+      color: var(--primary-color);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .advantage-item p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* Work Experience */
+    .work-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .work-item {
+      padding-left: 1.5rem;
+      border-left: 4px solid rgba(34, 197, 187, 0.9);
+      position: relative;
+      background: linear-gradient(90deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.8));
+      padding: 1rem 1rem 1rem 2rem;
+      border-radius: 0 15px 15px 0;
+      transition: all 0.3s ease;
+    }
+
+    .work-item:hover {
+      transform: translateX(5px);
+      background: linear-gradient(90deg, rgba(209, 250, 229, 0.96), rgba(224, 242, 254, 0.9));
+    }
+
+    .work-item::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 1.2rem;
+      width: 16px;
+      height: 16px;
+      background: rgba(34, 197, 187, 0.95);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+    }
+
+    .work-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .work-company {
+      color: var(--secondary-color);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .work-period {
+      color: var(--purple-color);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .work-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .project-item {
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 20px;
+      padding: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .project-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.18);
+      border-color: rgba(34, 197, 187, 0.9);
+    }
+
+    .project-item h4 {
+      color: var(--secondary-color);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-role {
+      color: var(--primary-color);
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .project-desc {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .project-contribution {
+      background: linear-gradient(135deg, rgba(239, 246, 255, 0.98), rgba(224, 242, 254, 0.98));
+      border-left: 3px solid rgba(34, 197, 187, 0.9);
+      padding: 0.6rem 0.9rem;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .project-contribution h5 {
+      color: var(--secondary-color);
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    .project-contribution p {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    /* Education Card */
+    .education-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .education-card:hover {
+      transform: scale(1.02);
+      border-color: rgba(34, 197, 187, 0.9);
+    }
+
+    .education-info h3 {
+      color: var(--purple-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .education-info p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .awards-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .awards-list li {
+      padding: 0.4rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+    }
+
+    .awards-list li::before {
+      content: '🏆';
+      position: absolute;
+      left: 0;
+    }
+
+    .awards-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Certifications */
+    .cert-list {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .cert-item {
+      padding: 0.5rem 1.2rem;
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
+      border-radius: 25px;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .cert-item-image {
+      padding: 0.3rem 0.8rem;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .cert-image {
+      display: block;
+      height: 80px;
+      width: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+      background-color: #ffffff;
+    }
+
+    .cert-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.25);
+    }
+
+    /* Interests */
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .interest-tag {
+      padding: 0.6rem 1.3rem;
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 25px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .interest-tag:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
+      color: #f9fafb;
+      border-color: rgba(34, 197, 187, 0.9);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.96), rgba(224, 242, 254, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 25px;
+      margin-top: 2rem;
+    }
+
+    .footer p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer .contact {
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Project Gallery */
+    .project-gallery {
+      margin-top: 0.5rem;
+    }
+
+    .project-gallery-row {
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-gallery-row::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .project-gallery-row::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.7);
+      border-radius: 999px;
+    }
+
+    .project-gallery-row::-webkit-scrollbar-track {
+      background: rgba(226, 232, 240, 0.7);
+    }
+
+    .project-gallery-item {
+      flex: 0 0 auto;
+      min-width: 260px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #ffffff;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+    }
+
+    .project-gallery-item img {
+      display: block;
+      height: 170px;
+      width: auto;
+      object-fit: cover;
+    }
+
+    /* Print page setup */
+    @page {
+      size: A4;
+      margin: 10mm;
+    }
+
+    /* Print Styles */
+    @media print {
+
+      html,
+      body {
+        background: white;
+        color: #111827;
+        width: 210mm;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .bg-animation,
+      .shapes {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 190mm;
+        padding: 0;
+        margin: 0 auto;
+      }
+
+      .header {
+        page-break-after: avoid;
+      }
+
+      .section,
+      .work-item,
+      .project-item,
+      .education-card,
+      .advantage-item,
+      .skill-category {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .project-gallery {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* 保持颜色但简化阴影，避免打印太花 */
+      .header,
+      .section,
+      .contact-item,
+      .skill-category,
+      .advantage-item,
+      .project-item,
+      .education-card,
+      .work-item,
+      .project-contribution,
+      .footer {
+        box-shadow: none;
+        background: #ffffff;
+        border-color: #e5e7eb;
+      }
+
+      .work-item {
+        border-left-color: #0f766e;
+      }
+
+      .section-title {
+        color: #0f766e;
+        border-bottom-color: #0f766e;
+      }
+
+      .project-gallery-row {
+        overflow: hidden;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .profile-box {
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .advantages-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .education-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-animation"></div>
+  <div class="shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header Section -->
+    <header class="header">
+      <div class="profile-box">
+        <img src="assets/photo.png" alt="AK头像" class="profile-photo">
+      </div>
+      <div class="header-info">
+        <h1 class="name">AK</h1>
+        <p class="title">前端开发工程师 · 15年经验</p>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="icon">📱</span>
+            <span class="text">15959274058</span>
+          </div>
+          <div class="contact-item">
+            <span class="icon">💬</span>
+            <span class="text">15959274058</span>
+          </div>
+          <div class="contact-item">
+            <span class="icon">✉️</span>
+            <span class="text">123456789@qq.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="icon">📍</span>
+            <span class="text">期望城市：厦门</span>
+          </div>
+          <div class="contact-item">
+            <span class="icon">💰</span>
+            <span class="text">期望薪资：18-25K</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-grid">
+      <!-- Left Column -->
+      <div class="left-column">
+        <!-- Skills Section -->
+        <section class="section">
+          <h2 class="section-title">
+            <span class="icon">💻</span>
+            专业技能
+          </h2>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h4><span class="icon">🎨</span>前端核心</h4>
+              <ul>
+                <li>精通Vue2、Vue3及相关生态</li>
+                <li>熟练使用uni-app开发小程序、Android应用</li>
+                <li>掌握Flutter跨平台开发</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <h4><span class="icon">🔧</span>拓展技术</h4>
+              <ul>
+                <li>精通RPA机器流程自动化开发</li>
+                <li>熟悉Android原生及混合应用开发</li>
+                <li>熟悉POS机开发</li>
+                <li>了解koa、express等后端框架</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <h4><span class="icon">🌐</span>特色技能</h4>
+              <ul>
+                <li>具备cesiumjs、webGL三维地图开发</li>
+                <li>数字孪生开发经验</li>
+                <li>熟悉DevOps自动化部署流程</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <h4><span class="icon">📊</span>开发管理</h4>
+              <ul>
+                <li>熟练使用processOn、PingCode等项目管理工具</li>
+                <li>持有PMP认证，具备扎实的项目管理理论基础</li>
+                <li>可独立负责项目统筹、需求评审及团队协作</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advantages Section -->
+        <section class="section">
+          <h2 class="section-title">
+            <span class="icon">⭐</span>
+            个人优势
+          </h2>
+          <div class="advantages-grid">
+            <div class="advantage-item">
+              <div class="icon">🎯</div>
+              <h4>技术全面</h4>
+              <p>15年互联网行业深耕，从Android Framework开发逐步转型为大前端开发，技术全面且扎实，覆盖前端、移动端、跨平台、RPA、三维开发等多个领域，实战经验丰富。</p>
+            </div>
+            <div class="advantage-item">
+              <div class="icon">👨‍💼</div>
+              <h4>管理能力</h4>
+              <p>通过PMP认证强化项目管理能力，具备"技术+管理"双重优势，善于统筹项目、协调团队，能高效解决开发过程中的复杂问题。</p>
+            </div>
+            <div class="advantage-item">
+              <div class="icon">🚀</div>
+              <h4>持续学习</h4>
+              <p>性格乐观、真诚负责，善于团队协作，对前沿技术保持高度关注和学习热情，兼具产品思维和创新意识，能快速适配业务需求。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section">
+          <h2 class="section-title">
+            <span class="icon">🎓</span>
+            教育背景
+          </h2>
+          <div class="education-card">
+            <div class="education-info">
+              <h3>武夷学院</h3>
+              <p><strong>学历：</strong>本科</p>
+              <p><strong>专业：</strong>计算机科学与技术</p>
+              <p><strong>时间：</strong>2007.09 - 2011.06</p>
+            </div>
+            <div class="education-awards">
+              <h4>荣誉奖项</h4>
+              <ul class="awards-list">
+                <li>2007-2008年度校单项积极分子</li>
+                <li>2008年海峡两岸茶博会优秀青年志愿者</li>
+                <li>2009年全国大学生数学建模竞赛福建赛区本科组一等奖</li>
+                <li>2010年第三届Biz-Wiz华中地区大学生数学建模邀请赛二等奖</li>
+              </ul>
+            </div>
+          </div>
+          <div class="education-card">
+            <div class="education-info">
+              <h3>南平高级中学</h3>
+              <p><strong>学历：</strong>高中</p>
+              <p><strong>时间：</strong>2003.09 - 2006.06</p>
+            </div>
+          </div>
+          <div style="margin-top: 1rem;">
+            <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">资格证书</h4>
+            <div class="cert-list">
+              <div class="cert-item cert-item-image">
+                <img src="assets/pmp.png" alt="PMP项目管理认证" class="cert-image">
+              </div>
+              <div class="cert-item">大学英语四级</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Interests Section -->
+        <section class="section">
+          <h2 class="section-title">
+            <span class="icon">🎯</span>
+            兴趣爱好
+          </h2>
+          <div class="interests-list">
+            <div class="interest-tag">🏸 打羽毛球</div>
+            <div class="interest-tag">🏊 游泳</div>
+            <div class="interest-tag">🎮 MOBA游戏</div>
+            <div class="interest-tag">📚 看书</div>
+            <div class="interest-tag">🔬 前沿技术研究</div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Work Experience Section -->
+        <section class="section">
+          <h2 class="section-title">
+            <span class="icon">💼</span>
+            工作经历
+          </h2>
+          <div class="work-list">
+            <div class="work-item">
+              <h3 class="work-title">高级Android工程师/大前端开发工程师</h3>
+              <div class="work-company">银联商务股份有限公司厦门分公司</div>
+              <div class="work-period">2018.06 - 2024.11</div>
+              <div class="work-desc">
+                负责前端（Vue、Weex、H5、小程序）、Android端、Flutter跨平台项目开发与优化；主导POS机相关应用开发、SDK开发；参与项目技术方案选型、需求分解与评审；统筹部分项目的开发管理工作，运用PMP知识保障项目落地。
+              </div>
+            </div>
+            <div class="work-item">
+              <h3 class="work-title">Android开发工程师</h3>
+              <div class="work-company">联想移动互联科技(厦门)有限公司</div>
+              <div class="work-period">2012.02 - 2018.04</div>
+              <div class="work-desc">
+                负责Android Framework系统UI开发与维护、系统应用（Contacts、InCallUI等）开发与迭代；参与中国移动相关合作项目，优化产品性能与用户体验；协助推进项目管理流程。
+              </div>
+            </div>
+            <div class="work-item">
+              <h3 class="work-title">Android实习生</h3>
+              <div class="work-company">毕元软件(厦门)科技有限公司</div>
+              <div class="work-period">2011.02 - 2012.02</div>
+              <div class="work-desc">
+                参与东方新闻网Android端开发，负责应用文档接口整理编辑，初步掌握软件开发与Android系统相关知识，顺利完成各项实习任务。
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section">
+          <h2 class="section-title">
+            <span class="icon">🚀</span>
+            核心项目经历
+          </h2>
+          <div class="projects-grid">
+            <div class="project-item">
+              <h4>📱 厦门市民卡APP</h4>
+              <div class="project-role">前端开发工程师 | 2018.02-2021.02</div>
+              <div class="project-desc">"i厦门"核心服务载体，实现出行、就医、就餐等便民服务一体化，涵盖APP、小程序、H5多端。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>负责Android端、Weex端、H5端核心模块开发（首页、乘车码、信用生活等），参与小程序端开发，保障多端适配与功能稳定。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>💻 银商电子办公系统</h4>
+              <div class="project-role">前端开发工程师 | 2018.01-2021.08</div>
+              <div class="project-desc">银联商务内部综合办公系统，包含项目管理、大数据报表、OA审批等多个子系统，采用Vue技术栈开发。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>主导前端模块开发，熟练运用element ui、echarts等组件库，解决多屏幕适配难点，优化系统性能。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>🗺️ 吉位罗盘项目</h4>
+              <div class="project-role">前端开发工程师 | 近期</div>
+              <div class="project-desc">移动端三维地图与传统风水堪舆结合的创新项目，涉及三维可视化开发。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>负责移动端前端开发，运用cesiumjs、webGL技术实现三维地图渲染，完成核心功能开发与优化。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>🔐 千银乐付项目</h4>
+              <div class="project-role">前端开发工程师 | 2021.03-2021.04</div>
+              <div class="project-desc">采用Flutter技术开发的定制化项目（太古可口可乐定制），实现号码认证一键登录等核心功能。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>搭建前端基础框架，开发核心组件与页面，解决阿里号码认证SDK无Flutter版本的问题，通过插件方式引入SDK。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>💳 云MISPOS支付项目</h4>
+              <div class="project-role">前端/Android开发工程师 | 2021.01-2021.07</div>
+              <div class="project-desc">为柒牌公司定制的移动POS机收银项目，采用Kotlin+Jetpack技术栈开发。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>参与技术选型，运用Kotlin协程技术降低异步编程难度，负责核心功能开发，项目顺利上线并在柒牌60多家门店试用。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>🤖 RPA发票处理项目</h4>
+              <div class="project-role">RPA开发工程师 | 近期</div>
+              <div class="project-desc">自动化处理发票OCR扫描、Excel录入、奖金计算、邮件确认等流程，提升办公自动化效率。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>精通RPA开发，负责整个自动化流程的搭建与优化，实现发票处理全流程自动化，减少人工成本。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>🏪 IOI集团会员积分系统</h4>
+              <div class="project-role">前端开发工程师 | 近期</div>
+              <div class="project-desc">实现IOI集团多业态会员积分互通、积分管理等功能，提升会员粘性。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>负责前端模块开发，适配多业态业务需求，保障积分系统稳定运行与数据准确。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>📊 武汉保供平台大屏</h4>
+              <div class="project-role">前端开发工程师 | 近期</div>
+              <div class="project-desc">应急战备物资供应智能调度系统，包含大屏数据可视化、物资调度等核心功能。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>负责大屏看板前端开发，运用echarts实现数据可视化，保障物资调度信息实时展示。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>🏠 智慧社区小程序</h4>
+              <div class="project-role">前端开发工程师 | 2020.04-2020.06</div>
+              <div class="project-desc">疫情防控专项小程序，包含出入登记、物业维修等核心模块，快速落地投入使用。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>搭建小程序项目框架，开发首页、出入登记模块，保障项目快速上线，助力疫情防控。</p>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h4>🔬 银商需求研发一体化平台</h4>
+              <div class="project-role">前端开发工程师 | 近期</div>
+              <div class="project-desc">研究型项目，通过AI技术实现从需求提出到应用落地部署的全流程自动化。</div>
+              <div class="project-contribution">
+                <h5>个人贡献</h5>
+                <p>负责前端模块开发，配合AI技术落地，参与技术方案优化，推动项目研发进度。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Project Gallery -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="icon">🖼️</span>
+        项目展示
+      </h2>
+      <div class="project-gallery">
+        <div class="project-gallery-row">
+          <div class="project-gallery-item">
+            <img src="assets/projects/3.jpg" alt="项目截图 1 - 厦门市民卡APP">
+          </div>
+          <div class="project-gallery-item">
+            <img src="assets/projects/4.png" alt="项目截图 2 - 银商电子办公系统">
+          </div>
+          <div class="project-gallery-item">
+            <img src="assets/projects/5.png" alt="项目截图 3 - 云MISPOS支付项目">
+          </div>
+          <div class="project-gallery-item">
+            <img src="assets/projects/6.png" alt="项目截图 4 - 武汉保供平台大屏">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>感谢您花时间查看我的简历</p>
+      <p class="contact">📧 123456789@qq.com | 📱 15959274058</p>
+    </footer>
+  </div>
+</body>
+
+</html>
